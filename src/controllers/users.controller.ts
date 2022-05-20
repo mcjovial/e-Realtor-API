@@ -67,4 +67,25 @@ const createUser = async (req: Request, res: Response) => {
   }
 }
 
-export { getAllUsers, createUser }
+// @desc    delete user by id
+// @route   DELETE /users/delete/:id
+// @access  Private/Admin
+const deleteUser = async (req: Request, res: Response) => {
+  try {
+    const id: string = req.params.id
+
+    await User.deleteOne({ _id: id })
+
+    // TODO: delete property assosiated with user also 
+
+    res.status(200).send({ message: 'User deleted with Associated Properties' })
+  } catch (err) {
+    let errorMessage = 'Deleting User Failed'
+    if (err instanceof Error) {
+      errorMessage = err.message
+    }
+    res.status(403).send({ error: err.message })
+  }
+}
+
+export { getAllUsers, createUser, deleteUser }
