@@ -8,9 +8,17 @@ interface UserAttributes {
   isAdmin?: boolean
 }
 
-interface LoginCredentials {
-  email: string
-  password: string
+interface PropertyAttributes {
+  _id?: string
+  title: string
+  description: string
+  size: number
+  rent: number
+  state: string
+  area: string
+  street: string
+  services: Array<string>
+  images: Array<string>
 }
 
-export { UserAttributes, LoginCredentials }
+export { UserAttributes, PropertyAttributes }
