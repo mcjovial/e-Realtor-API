@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { LoginCredentials, UserAttributes } from '../constants/types'
+import { UserAttributes } from '../constants/types'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
