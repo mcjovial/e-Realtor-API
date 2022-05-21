@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import { json } from 'body-parser';
 import { todoRouter } from './routes/todo'
 import { userRouter } from './routes/users.router';
+import { propertyRouter } from './routes/properties.router';
 
 require('dotenv').config()
 
@@ -13,6 +14,7 @@ const port = process.env.PORT || 3000
 app.use(json())
 app.use(todoRouter)
 app.use(userRouter)
+app.use(propertyRouter)
 
 mongoose.connect(uri, {
   useNewUrlParser: true,

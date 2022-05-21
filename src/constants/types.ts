@@ -19,6 +19,7 @@ interface PropertyAttributes {
   street: string
   services: Array<string>
   images: Array<string>
+  userId: string
 }
 
 export { UserAttributes, PropertyAttributes }
