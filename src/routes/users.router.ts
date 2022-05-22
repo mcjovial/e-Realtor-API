@@ -1,12 +1,13 @@
 import express from 'express'
 import { createUser, deleteUser, getAllUsers, loginUser, logoutUser } from '../controllers/users.controller'
+import { verifyAdmin, verifyTokenStored, verifyUserToken } from '../middlewares/auth'
 
 const router = express.Router()
 
-router.get('/api/user', getAllUsers)
+router.get('/api/user', verifyUserToken, verifyTokenStored, verifyAdmin, getAllUsers)
 router.post('/api/user', createUser)
-router.delete('/api/user/delete/:id', deleteUser)
 router.post('/api/user/login', loginUser)
-router.post('/api/user/logout', logoutUser)
+router.post('/api/user/logout', verifyUserToken, verifyTokenStored, logoutUser)
+router.delete('/api/user/delete/:id', verifyUserToken, verifyTokenStored, deleteUser)
 
 export { router as userRouter }

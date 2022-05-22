@@ -1,9 +1,10 @@
-import express from 'express';
+import express from 'express'
 import mongoose from 'mongoose'
-import { json } from 'body-parser';
+import { json } from 'body-parser'
 import { todoRouter } from './routes/todo'
-import { userRouter } from './routes/users.router';
-import { propertyRouter } from './routes/properties.router';
+import { userRouter } from './routes/users.router'
+import { propertyRouter } from './routes/properties.router'
+import './db'
 
 require('dotenv').config()
 

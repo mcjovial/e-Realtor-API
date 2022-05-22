@@ -2,6 +2,7 @@ import mongoose from 'mongoose'
 import { UserAttributes } from '../constants/types'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import { setRedisValue } from '../utils/redis.util'
 
 const Schema = mongoose.Schema
 
@@ -79,6 +80,8 @@ export async function generateJwtAuthToken(user: UserAttributes): Promise<string
   const token = jwt.sign({ id: user._id.toString() }, 'verysecretjwttokenmsg', { expiresIn: '4d' })
 
   if(!token) throw new Error('Token Creation Failed')
+
+  await setRedisValue(user._id.toString(), { token })
 
   return token
 }

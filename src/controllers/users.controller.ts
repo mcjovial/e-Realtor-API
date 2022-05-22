@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import { UserAttributes } from '../constants/types'
 import { findByCredentials, generateJwtAuthToken, User } from '../models/users.model'
 import bcrypt from 'bcryptjs'
+import { delRedisValue, setRedisValue } from '../utils/redis.util'
 
 // 400 Bad Request -> The 400 status code, or Bad Request error, means the HTTP request that was sent to the server has invalid syntax.
 // 401 unauthneticated
@@ -136,11 +137,11 @@ const logoutUser = async (req: Request, res: Response) => {
 
     // TODO: Redis procedure
 
-    // // remove the refresh token
-    // await delRedisValue(user.id.toString())
+    // remove the refresh token
+    await delRedisValue(user.id.toString())
 
-    // // blacklist current access token
-    // await setRedisValue('BL_' + user.id.toString(), { token })
+    // blacklist current access token
+    await setRedisValue('BL_' + user.id.toString(), { token })
 
     res.status(200).send({ message: 'User Logged out' })
   } catch (err) {

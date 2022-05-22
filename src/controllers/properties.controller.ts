@@ -67,7 +67,7 @@ const filterAllproperties = async (req: Request, res: Response) => {
     // const maxSize = await Property.find().sort({ 'size': -1 }).limit(1)
     properties = await Property.find({ $or: [{ 'state': { $regex : new RegExp(state, "i")} }, { 'area': { $in : area }}, { 'rent': rent }, { 'size': size }] }).exec()
 
-    if (!properties. || !properties.every((property: any) => property instanceof Property)) {
+    if (!properties || !properties.every((property: any) => property instanceof Property)) {
       throw new Error('Couldnt filter property')
     }
     res.status(200).send({ properties })
