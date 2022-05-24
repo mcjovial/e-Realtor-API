@@ -7,4 +7,5 @@ const router = express.Router()
 
 router.post('/', upload.array('avatar', 3), uploadImages)
 
-export default router
+export { router as uploadRouter}
+

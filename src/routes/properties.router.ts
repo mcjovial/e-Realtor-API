@@ -1,6 +1,6 @@
 import express from 'express'
 import { createProperty, deleteProperty, filterAllproperties, getAllProperties, getProperty } from '../controllers/properties.controller'
-import { verifyTokenStored, verifyUserToken } from '../middlewares/auth'
+import { verifyTokenStored, verifyUserToken } from '../middlewares/auth.middleware'
 
 const router = express.Router()
 
